@@ -28,7 +28,7 @@ public class UserDTO {
     @NotNull
     @NotEmpty
     @Size(min = 8, max =10)
-    private String senha;
+    private String password;
     @NotNull
     @Email(message = "{email.invalid}")
     private String email;

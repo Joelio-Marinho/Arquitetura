@@ -29,10 +29,4 @@ public class User implements Serializable {
     @ManyToOne
     @JoinColumn(name = "Endereco_id",referencedColumnName = "id")
     private Address address;
-
-
-    public User(String email, String password) {
-        this.email = email;
-        this.password = password;
-    }
 }

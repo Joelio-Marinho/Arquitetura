@@ -2,6 +2,7 @@ package com.arquitetura.Service;
 
 import com.arquitetura.DTO.UserDTO;
 import com.arquitetura.Exception.BusinessException;
+import com.arquitetura.Model.Address;
 import com.arquitetura.Model.User;
 import com.arquitetura.Repository.UserRepository;
 import org.modelmapper.ModelMapper;
@@ -24,24 +25,22 @@ public class UserService {
       return departamento.orElseThrow(()-> new BusinessException("Usuario não existe", new ResponseStatusException(HttpStatus.NOT_FOUND)));
   }
 
-  public User created(UserDTO userDTO) throws BusinessException {
-      User entity = modelMapper.map(userDTO, User.class);
-      if (repository.existsByName(entity.getName())){
+  public User created(User user) throws BusinessException {
+      if (repository.existsByName(user.getName())){
           throw new BusinessException("pessoa.exist",new ResponseStatusException(HttpStatus.BAD_REQUEST));
       }
-      return repository.save(entity);
+      return  repository.save(user);
   }
-  public User update (Integer id, UserDTO userDTO) throws BusinessException {
-      User entity = modelMapper.map(userDTO, User.class);
+  public User update (Integer id, User user) throws BusinessException {
       if(!repository.existsById(id)){
           throw new BusinessException("pessoa.not.exist", new ResponseStatusException(HttpStatus.NOT_FOUND));
       }
       User userUpdate = getById(id);
-      userUpdate.setAddress(entity.getAddress());
-      userUpdate.setFone(entity.getFone());
-      userUpdate.setName(entity.getName());
-      userUpdate.setEmail(entity.getEmail());
-      userUpdate.setPassword(entity.getPassword());
+      userUpdate.setAddress(modelMapper.map(user.getAddress(), Address.class));
+      userUpdate.setFone(user.getFone());
+      userUpdate.setName(user.getName());
+      userUpdate.setEmail(user.getEmail());
+      userUpdate.setPassword(user.getPassword());
       return userUpdate;
   }
 
