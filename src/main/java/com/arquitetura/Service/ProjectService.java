@@ -29,7 +29,7 @@ public class ProjectService {
         return Project.orElseThrow(()-> new BusinessException("Projeto não existe", new ResponseStatusException(HttpStatus.NOT_FOUND)));
     }
 
-    public Project created(ProjectDTO projectDTO) throws BusinessException {
+    public Project create(ProjectDTO projectDTO) throws BusinessException {
         Project entity = modelMapper.map(projectDTO, Project.class);
         if (ProjectRepository.existsByName(entity.getName())){
             throw new BusinessException("pessoa.exist",new ResponseStatusException(HttpStatus.BAD_REQUEST));

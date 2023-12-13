@@ -34,7 +34,7 @@ public class AddressController {
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity< AddressDTO> create(@RequestBody @Valid AddressDTO dto) throws BusinessException {
         Address entity = modelMapper.map(dto, Address.class);
-        entity = addressService.created(entity);
+        entity = addressService.create(entity);
         AddressDTO addressDTO =  modelMapper.map(entity,AddressDTO.class);
         return new ResponseEntity<>(addressDTO, HttpStatus.CREATED);
     }

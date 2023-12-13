@@ -36,7 +36,7 @@ public class UserControlle {
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity< UserDTO> create(@RequestBody @Valid UserDTO dto) throws BusinessException {
         User entity = modelMapper.map(dto, User.class);
-        entity = userService.created(entity);
+        entity = userService.create(entity);
         UserDTO userDTO =  modelMapper.map(entity,UserDTO.class);
         return new ResponseEntity<>(userDTO, HttpStatus.CREATED);
     }

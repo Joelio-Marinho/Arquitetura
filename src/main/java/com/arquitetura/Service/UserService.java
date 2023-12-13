@@ -26,7 +26,7 @@ public class UserService {
       return departamento.orElseThrow(()-> new BusinessException("Usuario não existe", new ResponseStatusException(HttpStatus.NOT_FOUND)));
   }
 
-  public User created(User user) throws BusinessException {
+  public User create(User user) throws BusinessException {
       if (repository.existsByName(user.getName())){
           throw new BusinessException("pessoa.exist",new ResponseStatusException(HttpStatus.BAD_REQUEST));
       }
