@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -36,14 +37,15 @@ public class UserService {
           throw new BusinessException("pessoa.not.exist", new ResponseStatusException(HttpStatus.NOT_FOUND));
       }
       User userUpdate = getById(id);
-      userUpdate.setAddress(modelMapper.map(user.getAddress(), Address.class));
+      if(user.getAddress()!=null){
+          userUpdate.setAddress(modelMapper.map(user.getAddress(), Address.class));
+      }
       userUpdate.setFone(user.getFone());
       userUpdate.setName(user.getName());
       userUpdate.setEmail(user.getEmail());
       userUpdate.setPassword(user.getPassword());
-      return userUpdate;
+      return repository.save(userUpdate);
   }
-
   public void delete(Integer id) throws BusinessException {
       if(!repository.existsById(id)){
           throw new BusinessException("pessoa.not.exist", new ResponseStatusException(HttpStatus.NOT_FOUND));

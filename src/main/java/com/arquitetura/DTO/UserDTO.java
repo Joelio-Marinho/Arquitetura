@@ -32,7 +32,9 @@ public class UserDTO {
     @NotNull
     @Email(message = "{email.invalid}")
     private String email;
+
     private Integer fone;
+
     private AddressDTO address;
 
 }

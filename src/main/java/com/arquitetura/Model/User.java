@@ -26,7 +26,7 @@ public class User implements Serializable {
     private Integer fone;
     @Column(name = "email", unique = true)
     private String email;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "Endereco_id",referencedColumnName = "id")
     private Address address;
 }

@@ -11,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("users")
 public class UserControlle {
@@ -30,7 +32,6 @@ public class UserControlle {
 
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
-
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity< UserDTO> create(@RequestBody @Valid UserDTO dto) throws BusinessException {
@@ -55,6 +56,4 @@ public class UserControlle {
         userService.delete(id);
         return new ResponseEntity<>( HttpStatus.OK);
     }
-
-
 }

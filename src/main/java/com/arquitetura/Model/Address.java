@@ -18,9 +18,11 @@ public class Address implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column
-    private String Street;
+    private String street;
     @Column
     private String city;
     @Column
     private String state;
+    @Column
+    private String cep;
 }
