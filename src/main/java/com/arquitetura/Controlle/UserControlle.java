@@ -23,9 +23,11 @@ public class UserControlle {
     public UserService getService() {
         return this.userService;
     }
+
     @GetMapping(value = "/{id}", produces = "Application/json")
     public ResponseEntity<UserDTO> findById(@PathVariable(value = "id") Integer id) throws BusinessException {
         UserDTO user = modelMapper.map(getService().getById(id), UserDTO.class);
+
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
@@ -46,6 +48,12 @@ public class UserControlle {
         entity = userService.update(id, entity);
         UserDTO userDTO = modelMapper.map(entity, UserDTO.class);
         return new ResponseEntity<>(userDTO, HttpStatus.OK);
+    }
+    @DeleteMapping(value = "/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public ResponseEntity<?> delete(@PathVariable(value = "id") Integer id) throws BusinessException {
+        userService.delete(id);
+        return new ResponseEntity<>( HttpStatus.OK);
     }
 
 
