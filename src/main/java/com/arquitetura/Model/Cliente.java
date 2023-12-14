@@ -2,6 +2,7 @@ package com.arquitetura.Model;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,6 +23,7 @@ public class Cliente implements Serializable {
     private String name;
     @Column
     private Integer telefone;
+    @Email
     @Column
     private String email;
     @OneToOne
