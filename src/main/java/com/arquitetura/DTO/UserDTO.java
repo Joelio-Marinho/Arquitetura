@@ -24,7 +24,7 @@ public class UserDTO {
 
     @NotEmpty
     @Size(min = 3, max = 50)
-    private String name;
+    private String username;
     @NotNull
     @NotEmpty
     @Size(min = 8, max =10)
