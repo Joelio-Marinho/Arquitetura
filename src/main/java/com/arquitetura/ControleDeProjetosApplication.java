@@ -13,7 +13,6 @@ public class ControleDeProjetosApplication {
 	public ModelMapper modelMapper(){
 		return new ModelMapper();
 	}
-
 	public static void main(String[] args) {
 		SpringApplication.run(ControleDeProjetosApplication.class, args);
 	}
