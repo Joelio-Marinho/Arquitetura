@@ -37,7 +37,7 @@ public class User implements UserDetails {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "Endereco_id",referencedColumnName = "id")
-    private Address address;
+    private Address address ;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
