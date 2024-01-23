@@ -8,6 +8,7 @@ import com.arquitetura.Repository.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -30,6 +31,8 @@ public class UserService {
       if (repository.existsByName(user.getName())){
           throw new BusinessException("pessoa.exist",new ResponseStatusException(HttpStatus.BAD_REQUEST));
       }
+      String encryptedPassword = new BCryptPasswordEncoder().encode(user.getPassword());
+      user.setPassword(encryptedPassword);
       return  repository.save(user);
   }
   public User update (Integer id, User user) throws BusinessException {
