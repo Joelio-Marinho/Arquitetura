@@ -1,7 +1,6 @@
 package com.arquitetura.DTO;
 
 
-import com.arquitetura.Model.Cliente;
 import com.arquitetura.Model.Enum.ProjectAprovacao;
 import com.arquitetura.Model.Enum.ProjectStatus;
 import com.arquitetura.Model.Valor;
@@ -14,6 +13,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.OffsetDateTime;
 import java.util.Date;
 @Data
 @Builder
@@ -25,14 +25,20 @@ public class ProjectDTO {
     private Integer id;
     @NotEmpty
     @NotNull
-    private Cliente cliente;
+    private UserDTO cliente;
+
     private ProjectAprovacao aprovacao;
+
     @NotEmpty
     @Size(min = 4, max = 50)
     private String name;
-    private Date dataInicial;
-    private Date DateFinal;
+
+    private OffsetDateTime dataInicial;
+
+    private OffsetDateTime DateFinal;
+
     @NotEmpty
     private Valor valor;
+
     private ProjectStatus finalizado;
 }

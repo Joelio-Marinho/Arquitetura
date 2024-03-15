@@ -2,7 +2,7 @@ package com.arquitetura.Model.Enum;
 
 public enum Role {
     ADMIN("admin"),
-    USERS("user");
+    CLIENT("client");
 
     private String role;
 

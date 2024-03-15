@@ -3,6 +3,7 @@ package com.arquitetura.Service;
 import com.arquitetura.DTO.UserDTO;
 import com.arquitetura.Exception.BusinessException;
 import com.arquitetura.Model.Address;
+import com.arquitetura.Model.Enum.Role;
 import com.arquitetura.Model.User;
 import com.arquitetura.Repository.UserRepository;
 import org.modelmapper.ModelMapper;
@@ -29,11 +30,14 @@ public class UserService {
 
   public User create(User user) throws BusinessException {
       if (repository.existsByName(user.getName())){
-          throw new BusinessException("pessoa.exist",new ResponseStatusException(HttpStatus.BAD_REQUEST));
+          throw new BusinessException("pessoa.exist",new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE));
       }
-      String encryptedPassword = new BCryptPasswordEncoder().encode(user.getPassword());
-      user.setPassword(encryptedPassword);
-      return  repository.save(user);
+      if(user.getRole().equals(Role.ADMIN)){
+          String encryptedPassword = new BCryptPasswordEncoder().encode(user.getPassword());
+          user.setPassword(encryptedPassword);
+          return  repository.save(user);
+      }
+      throw new BusinessException("pessoa.is.not.created",new ResponseStatusException(HttpStatus.BAD_REQUEST));
   }
   public User update (Integer id, User user) throws BusinessException {
       if(!repository.existsById(id)){

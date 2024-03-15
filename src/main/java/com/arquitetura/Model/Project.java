@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.time.OffsetDateTime;
 import java.util.Date;
 @Data
 @Entity(name= "table_projects")
@@ -19,26 +20,36 @@ public class Project implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @ManyToOne
-    @JoinColumn(name = "Id_Cliente")
-    private Cliente cliente;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "Id_Cliente",referencedColumnName = "id")
+    private User Id_Cliente;
+
     @Column
     private ProjectAprovacao aprovacao;
+
     @Column
     private String name;
+
     @Column
-    private Date dataInicial;
+    private OffsetDateTime dataInicial;
+
     @Column
-    private Date DateFinal;
+    private OffsetDateTime DateFinal;
+
     @OneToOne
     @JoinColumn(name = "Id_Valor")
     private Valor valor;
+
     @Column
     private ProjectStatus finalizado;
-    @OneToOne
+
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "Id_Endereço",referencedColumnName = "id")
-    private Address address;
-    @OneToOne
+    private Address Id_Endereço;
+
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "Id_User",referencedColumnName = "id")
-    private User user;
+    private User Id_User;
+
 }
