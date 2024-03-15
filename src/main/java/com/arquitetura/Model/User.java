@@ -28,7 +28,8 @@ public class User implements UserDetails {
     @Column
     private String password;
     @Column
-    private Integer fone;
+    private String fone;
+
     @Column(name = "email", unique = true)
     private String email;
 

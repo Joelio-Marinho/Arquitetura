@@ -1,0 +1,5 @@
+# Created at 2024-02-23T09:56:26.672
+Boot Manifest-JAR contains absolute paths in classpath 'D:\joelio\projetos\projeto spring boot\Arquitetura\target\test-classes'
+Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+'other' has different root
+
